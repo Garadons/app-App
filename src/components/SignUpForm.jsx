@@ -1,13 +1,13 @@
 import React from "react";
 
-import Input from "./common/Input";
-import BtnGroup from "./common/BtnGroup";
-import Button from "./common/Button";
-import SubmitButton from "./common/SubmitButton";
-import SocialNetworks from "./common/SocialNetworks";
-import SocialIcon from "./common/SociaIcon";
-import FormCheckBox from "./common/FormCheckBox";
-import Form from "./common/Form";
+import Input from "./common/Input/Input";
+import BtnGroup from "./common/BtnGroup/BtnGroup";
+import Button from "./common/Button/Button";
+import SubmitButton from "./common/SubmitButton/SubmitButton";
+import SocialNetworks from "./common/SocialNetworks/SocialNetworks";
+import SocialIcon from "./common/SocialIcon/SociaIcon";
+import FormCheckBox from "./common/FormCheckBox/FormCheckBox";
+import Form from "./common/Form/Form";
 
 import facebook from "../img/facebook.png";
 import google from "../img/google.png";
