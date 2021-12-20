@@ -1,19 +1,19 @@
 import React from "react";
 
-import Input from "./common/Input/Input";
-import BtnGroup from "./common/BtnGroup/BtnGroup";
-import Button from "./common/Button/Button";
-import SubmitButton from "./common/SubmitButton/SubmitButton";
-import SocialNetworks from "./common/SocialNetworks/SocialNetworks";
-import SocialIcon from "./common/SocialIcon/SocialIcon";
-import FormCheckBox from "./common/FormCheckBox/FormCheckBox";
-import Form from "./common/Form/Form";
+import Input from "../common/Input/Input";
+import BtnGroup from "../common/BtnGroup/BtnGroup";
+import Button from "../common/Button/Button";
+import SubmitButton from "../common/SubmitButton/SubmitButton";
+import SocialNetworks from "../common/SocialNetworks/SocialNetworks";
+import SocialIcon from "../common/SocialIcon/SocialIcon";
+import FormCheckBox from "../common/FormCheckBox/FormCheckBox";
+import Form from "../common/Form/Form";
 
-import facebook from "../img/facebook.png";
-import google from "../img/google.png";
-import instagram from "../img/instagram.png";
-import linkedin from "../img/linkedin.png";
-import mainFormImg from "../img/loginFormImg.png";
+import facebook from "../../img/facebook.png";
+import google from "../../img/google.png";
+import instagram from "../../img/instagram.png";
+import linkedin from "../../img/linkedin.png";
+import mainFormImg from "../../img/loginFormImg.png";
 
 function SignUpForm() {
   return (
