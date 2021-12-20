@@ -17,7 +17,7 @@ import mainFormImg from "../img/loginFormImg.png";
 
 function SignUpForm() {
   return (
-    <div className="app">
+    <div className="signUpForm">
       <div className="formContainer">
         <h2 className="formTitle">Create account</h2>
         <SocialNetworks>

@@ -10,7 +10,7 @@ body {
   font-size: 10px;
 }
 
-.app {
+.signUpForm {
   display: flex;
   justify-content: space-between;
   align-items: center;
