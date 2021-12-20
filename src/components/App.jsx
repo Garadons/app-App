@@ -13,7 +13,7 @@ import facebook from "../img/facebook.png";
 import google from "../img/google.png";
 import instagram from "../img/instagram.png";
 import linkedin from "../img/linkedin.png";
-import mainFormImg from "../img/mainFormImage2.png";
+import mainFormImg from "../img/loginFormImg.png";
 
 function App() {
   return (
