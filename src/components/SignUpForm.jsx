@@ -5,7 +5,7 @@ import BtnGroup from "./common/BtnGroup/BtnGroup";
 import Button from "./common/Button/Button";
 import SubmitButton from "./common/SubmitButton/SubmitButton";
 import SocialNetworks from "./common/SocialNetworks/SocialNetworks";
-import SocialIcon from "./common/SocialIcon/SociaIcon";
+import SocialIcon from "./common/SocialIcon/SocialIcon";
 import FormCheckBox from "./common/FormCheckBox/FormCheckBox";
 import Form from "./common/Form/Form";
 
