@@ -15,11 +15,15 @@ body {
   justify-content: space-between;
   align-items: center;
 
-  margin: 80px auto;
-  /* Пока думаю */
-
   width: 600px;
   border-radius: 8px;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 50%;
+  transform: translate(0, -50%);
 
   background-color: white;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
