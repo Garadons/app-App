@@ -10,5 +10,6 @@ import "./components/common/Input/Input.css"
 import "./components/common/FormCheckBox/FormCheckBox.css"
 import "./components/common/BtnGroup/BtnGroup.css"
 import "./components/common/Button/Button.css"
+import "./components/LogInForm/LogInForm.css"
 
 ReactDOM.render(<App />, document.getElementById("root"));
