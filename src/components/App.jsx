@@ -1,10 +1,11 @@
 import React from "react";
 
-import SignUpForm from "./SignUpForm/SignUpForm";
-import LogInForm from "./LogInForm/LogInForm";
+import SignUpForm from "./SignUpForm";
+import LogInForm from "./LogInForm";
 
 function App() {
   return <LogInForm />;
+  // return <SignUpForm/>
 }
 
 export default App;
