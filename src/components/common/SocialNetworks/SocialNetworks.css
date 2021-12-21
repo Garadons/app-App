@@ -1,0 +1,11 @@
+.socialMedia {
+  margin-top: 20px;
+}
+
+.socialMedia img {
+  width: 23px;
+}
+
+.socialMedia a + a {
+  margin-left: 12px;
+}

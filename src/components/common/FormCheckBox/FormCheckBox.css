@@ -1,0 +1,17 @@
+.formCheckBox {
+  margin-top: 13px;
+  display: block;
+}
+
+.formCheckBox span {
+  margin-left: 5px;
+}
+
+.formCheckBox input {
+  cursor: pointer;
+}
+
+.formCheckBox a {
+  color: #ee5a5a;
+  text-decoration: none;
+}

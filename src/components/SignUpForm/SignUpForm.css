@@ -1,0 +1,43 @@
+.signUpForm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 600px;
+  border-radius: 8px;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 50%;
+  transform: translate(0, -50%);
+
+  background-color: white;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  padding: 0 65px;
+}
+
+.formTitle {
+  font-size: 25px;
+  color: #ee5a5a;
+  text-transform: capitalize;
+}
+
+.formImg {
+  width: 40%;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+
+.formLable {
+  color: #5d5c5d;
+  margin-top: 20px;
+}
