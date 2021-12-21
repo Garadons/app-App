@@ -37,7 +37,7 @@ function SignUpForm() {
           </FormCheckBox>
           <BtnGroup>
             <SubmitButton value="Sign Up" isActive />
-            <Button value="Sign In" />
+            <Button value="Sign In" to="signin" />
           </BtnGroup>
         </Form>
       </div>

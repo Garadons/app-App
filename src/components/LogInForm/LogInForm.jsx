@@ -19,14 +19,14 @@ function LogInForm() {
   return (
     <div className="logInForm">
       <div className="formContainer">
-        <h2 className="formTitle">Create account</h2>
+        <h2 className="formTitle">Login</h2>
         <SocialNetworks>
           <SocialIcon icon={facebook} link="#" />
           <SocialIcon icon={google} link="#" />
           <SocialIcon icon={instagram} link="#" />
           <SocialIcon icon={linkedin} link="#" />
         </SocialNetworks>
-        <span className="formLable">or use your email for registration:</span>
+        <span className="formLable">or use your email for login:</span>
         <Form action="#">
           <Input type="text" placeholder="Name" isRequired />
           <Input type="password" placeholder="Password" isRequired />
@@ -35,8 +35,8 @@ function LogInForm() {
             <a href="#"> Privat Police </a>
           </FormCheckBox>
           <BtnGroup>
-            <SubmitButton value="Sign Up" isActive />
-            <Button value="Sign In" />
+            <Button value="Sign Up" to="/signup" />
+            <SubmitButton value="Sign In" isActive />
           </BtnGroup>
         </Form>
       </div>
