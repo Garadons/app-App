@@ -30,10 +30,6 @@ function LogInForm() {
         <Form action="#">
           <Input type="text" placeholder="Name" isRequired />
           <Input type="password" placeholder="Password" isRequired />
-          <FormCheckBox>
-            I agree with <a href="#"> Terms </a> and
-            <a href="#"> Privat Police </a>
-          </FormCheckBox>
           <BtnGroup>
             <Button value="Sign Up" to="/signup" />
             <SubmitButton value="Sign In" isActive />
