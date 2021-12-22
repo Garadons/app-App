@@ -6,6 +6,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
+import Home from "./Home";
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
 
@@ -20,10 +21,12 @@ function App() {
         <Route path="/signup">
           <SignUpForm />
         </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
       </Switch>
     </Router>
   );
-  // return <SignUpForm/>
 }
 
 export default App;
