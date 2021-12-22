@@ -34,7 +34,7 @@ function LogInForm() {
           <Input type="password" placeholder="Password" isRequired />
           <BtnGroup>
             <Button value="Sign Up" to="/signup" />
-            <SubmitButton value="Sign In" isActive />
+            <SubmitButton value="Sign In" to="/home" isActive />
           </BtnGroup>
         </Form>
       </div>

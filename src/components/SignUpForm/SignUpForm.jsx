@@ -38,7 +38,7 @@ function SignUpForm() {
             <a href="#"> Privat Police </a>
           </FormCheckBox>
           <BtnGroup>
-            <SubmitButton value="Sign Up" isActive />
+            <SubmitButton value="Sign Up" to="/home" isActive />
             <Button value="Sign In" to="signin" />
           </BtnGroup>
         </Form>
