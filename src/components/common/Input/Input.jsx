@@ -1,6 +1,6 @@
 import React from "react";
 
-// Кастомные многоразовые импуты
+import "./Input.css";
 
 function Input(props) {
   const { type, placeholder, isRequired } = props;

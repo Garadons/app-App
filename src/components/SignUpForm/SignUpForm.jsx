@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./SignUpForm.css";
+
 import Input from "../common/Input";
 import BtnGroup from "../common/BtnGroup";
 import Button from "../common/Button";

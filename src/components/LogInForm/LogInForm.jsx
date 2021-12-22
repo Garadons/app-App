@@ -9,6 +9,8 @@ import SocialIcon from "../common/SocialIcon";
 import FormCheckBox from "../common/FormCheckBox";
 import Form from "../common/Form/Form";
 
+import "./LogInForm.css";
+
 import facebook from "../../img/facebook.png";
 import google from "../../img/google.png";
 import instagram from "../../img/instagram.png";

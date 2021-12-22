@@ -1,6 +1,6 @@
 import React from "react";
 
-// Иконки Соц сетей на форме регистрации
+import "./SocialNetworks.css";
 
 function SocialNetworks(props) {
   return <div className="socialMedia">{props.children}</div>;

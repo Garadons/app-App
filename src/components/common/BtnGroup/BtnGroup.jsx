@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./BtnGroup.css";
+
 //Многоразовый контэйнер для кнопок
 
 function BtnGroup(props) {

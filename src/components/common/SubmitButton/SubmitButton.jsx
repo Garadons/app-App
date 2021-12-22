@@ -1,6 +1,6 @@
 import React from "react";
 
-//Многоразовая кастомная сабмит кнопка
+import "./SubmitButton.css";
 
 function SubmitButton(props) {
   const { value, isActive } = props;

@@ -9,3 +9,8 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 10px;
 }
+
+form {
+  margin-top: 15px;
+  width: 100%;
+}

@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./FormCheckBox.css";
+
 // Чекбокс с тектом для подтверждения  Terms и Privat Police
 
 function FormCheckBox(props) {
