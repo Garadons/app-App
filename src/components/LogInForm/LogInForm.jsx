@@ -21,7 +21,7 @@ function LogInForm() {
   return (
     <div className="logInForm">
       <div className="formContainer">
-        <h2 className="formTitle">Login</h2>
+        <h2 className="formTitle">Enter account</h2>
         <SocialNetworks>
           <SocialIcon icon={facebook} link="#" />
           <SocialIcon icon={google} link="#" />
