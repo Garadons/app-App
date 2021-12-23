@@ -41,3 +41,8 @@
   color: #5d5c5d;
   margin-top: 20px;
 }
+
+.errorForm {
+  padding: 3px 3px;
+  color: red;
+}

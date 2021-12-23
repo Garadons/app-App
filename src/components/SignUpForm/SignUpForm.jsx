@@ -88,7 +88,9 @@ function SignUpForm() {
             onChange={formik.handleChange}
             value={formik.values.name}
           />
-          {formik.errors.name && <div>{formik.errors.name}</div>}
+          {formik.errors.name && (
+            <div className="errorForm">{formik.errors.name}</div>
+          )}
           <Input
             id="email"
             name="email"
@@ -97,7 +99,9 @@ function SignUpForm() {
             onChange={formik.handleChange}
             value={formik.values.email}
           />
-          {formik.errors.email && <div>{formik.errors.email}</div>}
+          {formik.errors.email && (
+            <div className="errorForm">{formik.errors.email}</div>
+          )}
           <Input
             id="password"
             name="password"
@@ -106,7 +110,9 @@ function SignUpForm() {
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-          {formik.errors.password && <div>{formik.errors.password}</div>}
+          {formik.errors.password && (
+            <div className="errorForm">{formik.errors.password}</div>
+          )}
           <FormCheckBox>
             I agree with <a href="#"> Terms </a> and
             <a href="#"> Privat Police </a>

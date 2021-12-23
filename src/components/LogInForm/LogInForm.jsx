@@ -81,7 +81,9 @@ function LogInForm() {
             onChange={formik.handleChange}
             value={formik.values.name}
           />
-          {formik.errors.name && <div>{formik.errors.name}</div>}
+          {formik.errors.name && (
+            <div className="errorForm">{formik.errors.name}</div>
+          )}
           <Input
             id="password"
             name="password"
@@ -90,7 +92,9 @@ function LogInForm() {
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-          {formik.errors.password && <div>{formik.errors.password}</div>}
+          {formik.errors.password && (
+            <div className="errorForm">{formik.errors.password}</div>
+          )}
           <BtnGroup>
             <Button value="Sign Up" to="/signup" />
             <SubmitButton value="Sign In" to="/home" isActive />
