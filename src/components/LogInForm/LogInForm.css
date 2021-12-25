@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
 
-  width: 600px;
+  max-width: 600px;
   border-radius: 8px;
 
   position: absolute;
@@ -45,4 +45,27 @@
 .errorForm {
   padding: 3px 3px;
   color: red;
+}
+
+@media (max-width: 576px) {
+  body {
+    background-color: white;
+  }
+
+  .logInForm {
+    justify-content: center;
+
+    max-width: 360px;
+
+    box-shadow: none;
+  }
+
+  .formContainer {
+    width: 100%;
+    padding: none;
+  }
+
+  .formImg {
+    display: none;
+  }
 }

@@ -46,3 +46,26 @@
   padding: 3px 3px;
   color: red;
 }
+
+@media (max-width: 576px) {
+  body {
+    background-color: white;
+  }
+
+  .signUpForm {
+    justify-content: center;
+
+    max-width: 360px;
+
+    box-shadow: none;
+  }
+
+  .formContainer {
+    width: 100%;
+    padding: none;
+  }
+
+  .formImg {
+    display: none;
+  }
+}
