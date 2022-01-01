@@ -1,0 +1,151 @@
+.body {
+  width: 100%;
+}
+
+.header {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  padding: 30px 30px;
+}
+
+.logo {
+  width: 3%;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+}
+
+.navLink {
+  margin-left: 100px;
+  text-decoration: none;
+  color: #5d5c5d;
+  font-size: 15px;
+}
+
+.navLink.active {
+  color: #ee5a5a;
+}
+
+.navLink:hover:not(.active) {
+  color: #f07b7b;
+  transition: 0.2s linear;
+}
+
+.container {
+  border-radius: 8px;
+  width: 60%;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.toDoHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 25px;
+}
+
+.toDoTitle {
+  font-size: 25px;
+  color: #ee5a5a;
+  text-transform: capitalize;
+}
+
+.addToDoMessage {
+  width: 50%;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: #f3f4f5;
+  border: 1px solid #c4cacc;
+  font-size: 12px;
+}
+
+.addToDoMessage::placeholder {
+  color: #b3b9bb;
+}
+
+.toDoList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.toDoMessage {
+  width: 60%;
+  height: 40px;
+  align-items: center;
+  padding: 0 10px;
+  margin: 7px;
+  border-radius: 5px;
+  display: flex;
+  background-color: white;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.toDoMessage input {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  width: 100%;
+  margin-right: 7px;
+  color: #5d5c5d;
+}
+
+.toDoButtons {
+  display: flex;
+}
+
+.toDoButtons button + button {
+  margin-left: 5px;
+}
+
+.toDoMessage button {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: none;
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s linear;
+}
+
+.toDoMessage button:hover {
+  transform: translateY(-5px);
+  border: 2px solid #ee5a5a;
+}
+
+.toDoMessage img {
+  width: 18px;
+}
+
+.toDoButtons {
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}
+
+.toDoMessage:hover .toDoButtons {
+  opacity: 1;
+}
+
+.toDoMessage-small {
+  width: 45%;
+  border: 1px solid #ee5a5a;
+  box-shadow: none;
+}
+
+.todoError {
+  color: #ee5a5a;
+  font-size: 10px;
+  margin-right: 2%;
+}

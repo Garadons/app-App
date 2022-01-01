@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,11 +6,15 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import Home from "./Home";
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
+import Home from "./Home";
 
 function App() {
+  const [tasks, onTasks] = useState(
+    JSON.parse(localStorage.getItem("tasks")) || []
+  );
+
   return (
     <Router>
       <Switch>
@@ -22,7 +26,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path="/home">
-          <Home />
+          <Home tasks={tasks} onTasks={onTasks} />
         </Route>
       </Switch>
     </Router>
