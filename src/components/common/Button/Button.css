@@ -18,3 +18,9 @@
 .button:hover {
   box-shadow: 3px 3px 6px rgba(224, 65, 65, 0.3);
 }
+
+@media (max-width: 700px) {
+  .buttonAdaptive {
+    display: none;
+  }
+}

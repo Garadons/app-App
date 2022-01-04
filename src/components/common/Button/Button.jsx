@@ -6,9 +6,9 @@ import "./Button.css";
 // Многоразовая кастомная кнопка
 
 function Button(props) {
-  const { value, to, isActive, ...otherProps } = props;
-  const classNames = isActive ? "button active" : "button";
-
+  const { value, to, isActive, isAdaptive, ...otherProps } = props;
+  let classNames = isActive ? "button active" : "button";
+  classNames += isAdaptive ? " buttonAdaptive" : "";
   return (
     <Link to={to}>
       <button {...otherProps} className={classNames}>

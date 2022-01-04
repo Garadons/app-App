@@ -18,3 +18,13 @@
   background-color: #f07b7b;
   transition: 0.2s linear;
 }
+
+.logOutImgTurnOn {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .logOutImgTurnOn {
+    display: block;
+  }
+}

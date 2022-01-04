@@ -9,10 +9,12 @@ function LogOutImg(props) {
   const { to, ...otherProps } = props;
 
   return (
-    <div className="logOutImgContainer">
-      <Link to={to}>
-        <img className="logOutImg" src={logout} {...otherProps} alt="#" />
-      </Link>
+    <div className="logOutImgTurnOn">
+      <div className="logOutImgContainer">
+        <Link to={to}>
+          <img className="logOutImg" src={logout} {...otherProps} alt="#" />
+        </Link>
+      </div>
     </div>
   );
 }
