@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 
 import Button from "../common/Button";
+import LogOutImg from "../common/LogOutImg";
+import TodoTask from "../common/TodoTask";
 
 import "./Home.css";
 
 import logo from "../../img/logo.png";
-import pencil from "../../img/pencil.png";
-import trash from "../../img/trash.png";
 import add from "../../img/add.png";
+import home from "../../img/home.png";
+import info from "../../img/info.png";
+import writing from "../../img/writing.png";
+import telephone from "../../img/telephone.png";
 
 function logOut() {
-  localStorage.clear();
+  localStorage.setItem("authorized", false);
 }
 
 function onTodoAdd(tasks, onTasks, todoTitle, onTodoTitle, onTodoError) {
   // Клонируем tasks и добавляем новый элемент в клон после чего мы обновляем состояние tasks
   if (todoTitle.trim() !== "") {
     const newTasks = [...tasks];
-    newTasks.push({ value: todoTitle });
+    newTasks.push({ value: todoTitle, done: false });
     onTasks(newTasks);
     onTodoError(false);
 
@@ -30,9 +34,35 @@ function onTodoAdd(tasks, onTasks, todoTitle, onTodoTitle, onTodoError) {
   }
 }
 
-function onTrashTodo(i, tasks, onTasks) {
+function onTodoChange(tasks, onTasks, todoValue, id) {
   const newTasks = [...tasks];
-  newTasks.splice(i, 1);
+  const newTodoTask = { ...newTasks[id] };
+  newTodoTask.value = todoValue;
+  newTasks[id] = newTodoTask;
+  onTasks(newTasks);
+}
+
+function onDone(tasks) {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function onClose(onTasks) {
+  onTasks(JSON.parse(localStorage.getItem("tasks")));
+}
+
+function onTrashTodo(id, tasks, onTasks) {
+  const newTasks = [...tasks];
+  newTasks.splice(id, 1);
+  onTasks(newTasks);
+
+  localStorage.setItem("tasks", JSON.stringify(newTasks));
+}
+
+function isDone(id, onTasks, tasks) {
+  const newTasks = [...tasks];
+  const newTodoTask = { ...newTasks[id] };
+  newTodoTask.done = true;
+  newTasks[id] = newTodoTask;
   onTasks(newTasks);
 
   localStorage.setItem("tasks", JSON.stringify(newTasks));
@@ -41,35 +71,46 @@ function onTrashTodo(i, tasks, onTasks) {
 function Home(props) {
   const [todoTitle, onTodoTitle] = useState("");
   const [todoError, onTodoError] = useState(false);
+  const [editing, onEditing] = useState(false);
   const { tasks, onTasks } = props;
-
   return (
     <div className="body">
       <div className="header">
         <img src={logo} className="logo" />
         <div className="navLinks">
+          <a href="#" className="navLink">
+            <img src={info} className="navLinkImg" alt="#" />
+            <p className="navLinkTitle">About</p>
+          </a>
           <a href="#" className="navLink active">
-            Home
+            <img src={home} className="navLinkImg" alt="#" />
+            <p className="navLinkTitle">Home</p>
           </a>
           <a href="#" className="navLink">
-            About
+            <img src={writing} className="navLinkImg" alt="#" />
+            <p className="navLinkTitle">Example</p>
           </a>
           <a href="#" className="navLink">
-            Example
+            <img src={telephone} className="navLinkImg" alt="#" />
+            <p className="navLinkTitle">Contact</p>
           </a>
-          <a href="#" className="navLink">
-            Contact
-          </a>
+          <div className="logOutImgTurnOn">
+            <LogOutImg onClick={logOut} to="signin" />
+          </div>
         </div>
-
-        <Button onClick={logOut} value="Log Out" to="signin" isActive />
+        <div className="logOutButton">
+          <Button onClick={logOut} value="Log Out" to="signin" isActive />
+        </div>
       </div>
       <div className="container">
         <div className="toDoHeader">
           <h2 className="toDoTitle">My todo list</h2>
           <div className="toDoMessage toDoMessage-small">
             <input
-              onChange={(e) => onTodoTitle(e.target.value)}
+              onChange={(e) => {
+                onTodoTitle(e.target.value);
+                onTodoError(false);
+              }}
               type="text"
               placeholder="Title for new todo"
               value={todoTitle}
@@ -88,18 +129,39 @@ function Home(props) {
         </div>
         <div className="toDoList">
           {/* Делаем шаблон для toDoMessage */}
-          {tasks.map((t, i) => (
-            <div className="toDoMessage" key={i}>
-              <input type="text" value={t.value} readOnly />
-              <div className="toDoButtons">
-                <button>
-                  <img src={pencil} />
-                </button>
-                <button onClick={() => onTrashTodo(i, tasks, onTasks)}>
-                  <img src={trash} />
-                </button>
-              </div>
-            </div>
+          {tasks.map((t, id) => (
+            // <div className="toDoMessage" key={i}>
+            //   <input
+            //     type="text"
+            //     onChange={(e) => onChangeTodo(e.target.value)}
+            //     value={t.value}
+            //   />
+            //   <div className="toDoButtons">
+            //     <button>
+            //       <img src={pencil} />
+            //     </button>
+            //     <button onClick={() => onTrashTodo(i, tasks, onTasks)}>
+            //       <img src={trash} />
+            //     </button>
+            //     <button >
+            //       <img src={done} />
+            //     </button>
+            //   </div>
+            // </div>
+            <TodoTask
+              value={t.value}
+              done={t.done}
+              key={id}
+              onTrashTodo={() => onTrashTodo(id, tasks, onTasks)}
+              onTodoChange={(todoValue) =>
+                onTodoChange(tasks, onTasks, todoValue, id)
+              }
+              onDone={() => onDone(tasks)}
+              onClose={() => onClose(onTasks)}
+              isDone={() => isDone(id, onTasks, tasks)}
+              editing={editing}
+              onEditing={onEditing}
+            />
           ))}
         </div>
       </div>

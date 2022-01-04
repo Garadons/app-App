@@ -1,0 +1,20 @@
+.logOutImgContainer {
+  background-color: #ee5a5a;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid transparent;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 100%;
+  align-items: center;
+  padding: 7px;
+}
+
+.logOutImg {
+  width: 30px;
+}
+
+.logOutImgContainer:hover {
+  background-color: #f07b7b;
+  transition: 0.2s linear;
+}

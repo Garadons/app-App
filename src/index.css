@@ -11,7 +11,7 @@ body {
 }
 
 @media (max-width: 576px) {
-  body {
+  body:has(.formContainer) {
     background-color: white;
   }
 }

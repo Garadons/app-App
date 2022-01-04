@@ -48,7 +48,9 @@ const validate = (values) => {
 };
 
 function SignUpForm() {
-  const [redirect, onRedirect] = useState(localStorage.getItem("authorized"));
+  const [redirect, onRedirect] = useState(
+    JSON.parse(localStorage.getItem("authorized"))
+  );
 
   const formik = useFormik({
     initialValues: {
