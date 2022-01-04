@@ -53,8 +53,8 @@ function LogInForm() {
     },
     validate,
     onSubmit: () => {
-      onRedirect(true);
       localStorage.setItem("authorized", true);
+      onRedirect(true);
     },
   });
 

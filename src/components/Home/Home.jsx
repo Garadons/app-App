@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 import Button from "../common/Button";
 import LogOutImg from "../common/LogOutImg";
@@ -72,6 +73,15 @@ function Home(props) {
   const [todoTitle, onTodoTitle] = useState("");
   const [todoError, onTodoError] = useState(false);
   const [editing, onEditing] = useState(false);
+
+  const [redirect, onRedirect] = useState(
+    JSON.parse(localStorage.getItem("authorized"))
+  );
+
+  if (!redirect) {
+    return <Redirect to="/signin" />;
+  }
+
   const { tasks, onTasks } = props;
   return (
     <div className="body">

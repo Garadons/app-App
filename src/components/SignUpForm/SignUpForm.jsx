@@ -60,8 +60,8 @@ function SignUpForm() {
     },
     validate,
     onSubmit: () => {
-      onRedirect(true);
       localStorage.setItem("authorized", true);
+      onRedirect(true);
     },
   });
 
