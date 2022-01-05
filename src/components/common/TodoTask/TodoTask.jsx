@@ -10,6 +10,7 @@ import "./TodoTask.css";
 function TodoTask(props) {
   const {
     value,
+    date,
     done,
     onTrashTodo,
     onTodoChange,
@@ -24,6 +25,7 @@ function TodoTask(props) {
 
   return (
     <div className={done ? "toDoMessage toDoMessage-done" : "toDoMessage"}>
+      <div className="date">{date}</div>
       <input
         type="text"
         value={value}

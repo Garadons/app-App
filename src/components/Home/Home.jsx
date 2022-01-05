@@ -19,18 +19,83 @@ function logOut() {
   localStorage.setItem("authorized", false);
 }
 
-function onTodoAdd(tasks, onTasks, todoTitle, onTodoTitle, onTodoError) {
-  if (todoTitle.trim() !== "") {
+function PretendZero(value) {
+  if (value < 10) {
+    value = "0" + value;
+  }
+  return value;
+}
+
+function dateNow() {
+  const dateNow = new Date(Date.now());
+
+  let date;
+  date = dateNow.getFullYear();
+  date += "-" + PretendZero(dateNow.getMonth() + 1);
+  date += "-" + PretendZero(dateNow.getDay() + 2);
+  date += "T" + PretendZero(dateNow.getHours());
+  date += ":" + PretendZero(dateNow.getMinutes());
+  return date;
+}
+
+function parseDateTimeInput(dataTime) {
+  console.log(dateNow());
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const dayNames = ["Sun", "Tue", "Wed", "Thu", "Fri", "Sat", "Mon"];
+
+  const dateDataTime = new Date(dataTime);
+
+  let date = monthNames[dateDataTime.getMonth()];
+  date += " " + dateDataTime.getDay();
+  date += " " + dayNames[dateDataTime.getDay()];
+  date += " " + dateDataTime.getHours();
+  date += ":" + dateDataTime.getMinutes();
+
+  return date;
+}
+
+function onTodoAdd(
+  tasks,
+  onTasks,
+  todoTitle,
+  todoDateTime,
+  onTodoTitle,
+  onTodoError,
+  onTodoDateTime
+) {
+  if (todoTitle.trim() !== "" && todoDateTime.trim() !== "") {
     const newTasks = [...tasks];
-    newTasks.push({ value: todoTitle, done: false });
+
+    const date = parseDateTimeInput(todoDateTime);
+
+    newTasks.push({ value: todoTitle, done: false, date });
     onTasks(newTasks);
     onTodoError(false);
 
     localStorage.setItem("tasks", JSON.stringify(newTasks));
 
     onTodoTitle("");
+    onTodoDateTime("");
   } else {
-    onTodoError(true);
+    if (todoDateTime.trim() !== "") {
+      onTodoError("Title required");
+    } else {
+      onTodoError("Data required");
+    }
   }
 }
 
@@ -70,12 +135,11 @@ function isDone(id, onTasks, tasks) {
 
 function Home(props) {
   const [todoTitle, onTodoTitle] = useState("");
+  const [todoDateTime, onTodoDateTime] = useState(dateNow());
   const [todoError, onTodoError] = useState(false);
   const [editing, onEditing] = useState(false);
 
-  const [redirect, onRedirect] = useState(
-    JSON.parse(localStorage.getItem("authorized"))
-  );
+  const redirect = JSON.parse(localStorage.getItem("authorized"));
 
   if (!redirect) {
     return <Redirect to="/signin" />;
@@ -104,25 +168,48 @@ function Home(props) {
       <div className="container">
         <div className="toDoHeader">
           <h2 className="toDoTitle">My todo list</h2>
-          <div className="toDoMessage toDoMessage-small">
-            <input
-              onChange={(e) => {
-                onTodoTitle(e.target.value);
-                onTodoError(false);
-              }}
-              type="text"
-              placeholder="Title for new todo"
-              value={todoTitle}
-            />
-            {todoError && <div className="todoError">Required</div>}
-            <div className="toDoButtons">
-              <button
-                onClick={() =>
-                  onTodoAdd(tasks, onTasks, todoTitle, onTodoTitle, onTodoError)
-                }
-              >
-                <img src={add} />
-              </button>
+          <div className="toDoHeaderInputs">
+            <div className="toDoMessage toDoMessage-small">
+              <input
+                type="datetime-local"
+                onChange={(e) => {
+                  onTodoDateTime(e.target.value);
+                }}
+                value={todoDateTime}
+                min={dateNow()}
+              />
+            </div>
+            <div className="toDoMessage toDoMessage-medium">
+              <input
+                onChange={(e) => {
+                  onTodoTitle(e.target.value);
+                  onTodoError(false);
+                }}
+                type="text"
+                placeholder="Title for new todo"
+                value={todoTitle}
+                min={""}
+              />
+              {!todoError == false && (
+                <div className="todoError">{todoError}</div>
+              )}
+              <div className="toDoButtons">
+                <button
+                  onClick={() =>
+                    onTodoAdd(
+                      tasks,
+                      onTasks,
+                      todoTitle,
+                      todoDateTime,
+                      onTodoTitle,
+                      onTodoError,
+                      onTodoDateTime
+                    )
+                  }
+                >
+                  <img src={add} />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -130,6 +217,7 @@ function Home(props) {
           {tasks.map((t, id) => (
             <TodoTask
               value={t.value}
+              date={t.date}
               done={t.done}
               key={id}
               onTrashTodo={() => onTrashTodo(id, tasks, onTasks)}

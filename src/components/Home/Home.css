@@ -60,6 +60,13 @@
   text-transform: capitalize;
 }
 
+.toDoHeaderInputs {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
 .toDoList {
   display: flex;
   flex-direction: column;
@@ -70,9 +77,16 @@
   color: #ee5a5a;
   font-size: 10px;
   margin-right: 2%;
+  text-align: center;
 }
 
 .toDoMessage-small {
+  width: 45%;
+  border: 1px solid #ee5a5a;
+  box-shadow: none;
+}
+
+.toDoMessage-medium {
   width: 45%;
   border: 1px solid #ee5a5a;
   box-shadow: none;
@@ -100,6 +114,11 @@
     border-radius: 10px;
     align-items: start;
     width: unset;
+  }
+
+  .toDoHeaderInputs {
+    display: flex;
+    flex-direction: column;
   }
 
   .logo {
@@ -159,6 +178,10 @@
   }
 
   .toDoMessage-small {
-    width: 75%;
+    width: 100%;
+  }
+
+  .toDoMessage-medium {
+    width: 100%;
   }
 }
