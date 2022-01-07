@@ -10,6 +10,7 @@ import SocialIcon from './SocialIcon'
 import SocialNetworks from './SocialNetworks'
 import SubmitButton from './SubmitButton'
 import TodoTask from './TodoTask'
+import NavLinks from './NavLinks'
 
 
 export {
@@ -24,5 +25,6 @@ export {
     SocialIcon, 
     SocialNetworks,
     SubmitButton,
-    TodoTask
+    TodoTask,
+    NavLinks
 }  

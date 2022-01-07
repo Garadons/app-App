@@ -9,6 +9,7 @@ import {
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
 import Home from "./Home";
+import Dogs from './Dogs'
 
 function App() {
   const [tasks, onTasks] = useState(
@@ -27,6 +28,9 @@ function App() {
         </Route>
         <Route path="/home">
           <Home tasks={tasks} onTasks={onTasks} />
+        </Route>
+        <Route path="/dogs">
+          <Dogs/>
         </Route>
       </Switch>
     </Router>

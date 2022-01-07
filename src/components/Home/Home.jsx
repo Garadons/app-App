@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 
-import {Button, LogOutImg, TodoTask, NavLink, Logo} from "../common";
+import {Button, LogOutImg, TodoTask, NavLink, Logo, NavLinks} from "../common";
 
 import "./Home.css";
 
@@ -146,13 +146,13 @@ function Home(props) {
     <div className="body">
       <div className="header">
         <Logo />
-        <div className="navLinks">
-          <NavLink icon={about} title={"About"} />
-          <NavLink icon={home} title={"Home"} isActive />
-          <NavLink icon={example} title={"Example"} />
-          <NavLink icon={contact} title={"Contact"} />
+        <NavLinks>          
+          <NavLink icon={about} title={"Dogs"} to="/dogs" />
+          <NavLink icon={home} title={"Home"} to="#" isActive />
+          <NavLink icon={example} title={"Example"} to="#" />
+          <NavLink icon={contact} title={"Contact"} to="#" />
           <LogOutImg onClick={logOut} to="signin" />
-        </div>
+        </NavLinks>
         <Button
           onClick={logOut}
           value="Log Out"
