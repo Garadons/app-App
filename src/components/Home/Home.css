@@ -1,7 +1,3 @@
-.body {
-  width: 100%;
-}
-
 .container {
   border-radius: 8px;
   width: 60%;
@@ -57,10 +53,6 @@
 @media (max-width: 700px) {
   body {
     background-color: #5d5c5d;
-  }
-
-  .body {
-    display: flex;
   }
 
   .toDoHeaderInputs {

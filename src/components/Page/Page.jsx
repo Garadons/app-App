@@ -9,7 +9,7 @@ function Page(props) {
 
   console.log(active);
   return (
-    <div>
+    <div className="body">
       <NavLinks active={active} setActive={setActive} />
       {content()}
     </div>

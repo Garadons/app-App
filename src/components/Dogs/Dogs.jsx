@@ -30,7 +30,7 @@ function Dogs() {
     return <Redirect to="/signin" />;
   }
   return (
-    <div className="body">
+    <>
       <div className="dogContainer">
         {dogsArray &&
           dogsArray.map((t, id) => (
@@ -39,7 +39,7 @@ function Dogs() {
             </div>
           ))}
       </div>
-    </div>
+    </>
   );
 }
 

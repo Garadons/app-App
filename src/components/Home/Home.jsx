@@ -143,7 +143,7 @@ function Home(props) {
   const { tasks, onTasks } = props;
 
   return (
-    <div className="body">
+    <>
       <div className="container">
         <div className="toDoHeader">
           <h2 className="toDoTitle">My todo list</h2>
@@ -212,7 +212,7 @@ function Home(props) {
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
