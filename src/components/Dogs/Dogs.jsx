@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from "react";
-
-import { Button, LogOutImg, NavLink, Logo, NavLinks } from "../common";
-
-import home from "../../img/home.png";
-import about from "../../img/about.png";
-import example from "../../img/example.png";
-import contact from "../../img/contact.png";
+import { Redirect } from "react-router-dom";
 
 import "./Dogs.css";
-
-function logOut() {
-  localStorage.setItem("authorized", false);
-}
 
 function Dogs() {
   const [dogsArray, setDogsArray] = useState([]);
@@ -33,25 +23,14 @@ function Dogs() {
       });
     return () => {};
   }, []);
+
+  const redirect = JSON.parse(localStorage.getItem("authorized"));
+
+  if (!redirect) {
+    return <Redirect to="/signin" />;
+  }
   return (
     <div className="body">
-      <div className="header">
-        <Logo />
-        <NavLinks>
-          <NavLink icon={about} title={"Dogs"} to="/dogs" isActive />
-          <NavLink icon={home} title={"Home"} to="/home" />
-          <NavLink icon={example} title={"Example"} to="#" />
-          <NavLink icon={contact} title={"Contact"} to="#" />
-          <LogOutImg onClick={logOut} to="signin" />
-        </NavLinks>
-        <Button
-          onClick={logOut}
-          value="Log Out"
-          to="signin"
-          isActive
-          isAdaptive
-        />
-      </div>
       <div className="dogContainer">
         {dogsArray &&
           dogsArray.map((t, id) => (

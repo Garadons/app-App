@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 
-import {Button, LogOutImg, TodoTask, NavLink, Logo, NavLinks} from "../common";
+import {
+  Button,
+  LogOutImg,
+  TodoTask,
+  NavLink,
+  Logo,
+  NavLinks,
+} from "../common";
 
 import "./Home.css";
 
 import add from "../../img/add.png";
-import home from "../../img/home.png";
-import about from "../../img/about.png";
-import example from "../../img/example.png";
-import contact from "../../img/contact.png";
-
-function logOut() {
-  localStorage.setItem("authorized", false);
-}
 
 function PretendZero(value) {
   if (value < 10) {
@@ -142,25 +141,9 @@ function Home(props) {
   }
 
   const { tasks, onTasks } = props;
+
   return (
     <div className="body">
-      <div className="header">
-        <Logo />
-        <NavLinks>          
-          <NavLink icon={about} title={"Dogs"} to="/dogs" />
-          <NavLink icon={home} title={"Home"} to="#" isActive />
-          <NavLink icon={example} title={"Example"} to="#" />
-          <NavLink icon={contact} title={"Contact"} to="#" />
-          <LogOutImg onClick={logOut} to="signin" />
-        </NavLinks>
-        <Button
-          onClick={logOut}
-          value="Log Out"
-          to="signin"
-          isActive
-          isAdaptive
-        />
-      </div>
       <div className="container">
         <div className="toDoHeader">
           <h2 className="toDoTitle">My todo list</h2>
