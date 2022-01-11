@@ -24,11 +24,6 @@ function Dogs() {
     return () => {};
   }, []);
 
-  const redirect = JSON.parse(localStorage.getItem("authorized"));
-
-  if (!redirect) {
-    return <Redirect to="/signin" />;
-  }
   return (
     <>
       <div className="dogContainer">

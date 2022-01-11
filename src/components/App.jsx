@@ -11,6 +11,7 @@ import LogInForm from "./LogInForm";
 import Home from "./Home";
 import Dogs from "./Dogs";
 import Page from "./Page";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   const [tasks, onTasks] = useState(
@@ -30,20 +31,20 @@ function App() {
         <Route path="/signup">
           <SignUpForm />
         </Route>
-        <Route path="/home">
+        <PrivateRoute path="/home">
           <Page
             active={active}
             setActive={setActive}
             content={() => <Home tasks={tasks} onTasks={onTasks} />}
           />
-        </Route>
-        <Route path="/dogs">
+        </PrivateRoute>
+        <PrivateRoute path="/dogs">
           <Page
             active={active}
             setActive={setActive}
             content={() => <Dogs />}
           />
-        </Route>
+        </PrivateRoute>
       </Switch>
     </Router>
   );

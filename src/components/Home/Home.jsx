@@ -134,12 +134,6 @@ function Home(props) {
   const [todoError, onTodoError] = useState(false);
   const [editing, onEditing] = useState(false);
 
-  const redirect = JSON.parse(localStorage.getItem("authorized"));
-
-  if (!redirect) {
-    return <Redirect to="/signin" />;
-  }
-
   const { tasks, onTasks } = props;
 
   return (
