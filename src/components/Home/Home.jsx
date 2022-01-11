@@ -1,14 +1,6 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
 
-import {
-  Button,
-  LogOutImg,
-  TodoTask,
-  NavLink,
-  Logo,
-  NavLinks,
-} from "../common";
+import { TodoTask } from "../common";
 
 import "./Home.css";
 
