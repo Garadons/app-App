@@ -6,6 +6,8 @@ import {
   Redirect,
 } from "react-router-dom";
 
+import tasksContext from "./tasksContext";
+
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
 import Home from "./Home";
@@ -32,11 +34,13 @@ function App() {
           <SignUpForm />
         </Route>
         <PrivateRoute path="/home">
-          <Page
-            active={active}
-            setActive={setActive}
-            content={() => <Home tasks={tasks} onTasks={onTasks} />}
-          />
+          <tasksContext.Provider value={{ tasks, onTasks }}>
+            <Page
+              active={active}
+              setActive={setActive}
+              content={() => <Home />}
+            />
+          </tasksContext.Provider>
         </PrivateRoute>
         <PrivateRoute path="/dogs">
           <Page

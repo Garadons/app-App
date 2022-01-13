@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+import tasksContext from "../tasksContext";
 
 import { TodoTask } from "../common";
 
@@ -26,7 +28,6 @@ function dateNow() {
 }
 
 function parseDateTimeInput(dataTime) {
-  console.log(dateNow());
   const monthNames = [
     "Jan",
     "Feb",
@@ -120,13 +121,13 @@ function isDone(id, onTasks, tasks) {
   localStorage.setItem("tasks", JSON.stringify(newTasks));
 }
 
-function Home(props) {
+function Home() {
   const [todoTitle, onTodoTitle] = useState("");
   const [todoDateTime, onTodoDateTime] = useState(dateNow());
   const [todoError, onTodoError] = useState(false);
   const [editing, onEditing] = useState(false);
 
-  const { tasks, onTasks } = props;
+  const { tasks, onTasks } = useContext(tasksContext);
 
   return (
     <>

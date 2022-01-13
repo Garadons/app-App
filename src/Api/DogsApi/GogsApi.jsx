@@ -1,27 +1,15 @@
-import React, { useEffect, useState } from "react";
-
-function GogsApi() {
-  const [dogsArray, setDogsArray] = useState([]);
-
-  useEffect(() => {
-    fetch("https://dog.ceo/api/breeds/image/random/9")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status != "success") {
-          throw Error("Server error");
-        }
-        return data;
-      })
-      .then((data) => {
-        setDogsArray(data.message);
-      })
-      .catch((e) => {
-        alert(e);
-      });
-    return () => {};
-  }, []);
-
-  return dogsArray;
+async function GogsApi() {
+  try {
+    const response = await fetch("https://dog.ceo/api/breeds/image/random/9");
+    const data = await response.json();
+    if (data.status != "success") {
+      throw Error("Server error");
+    } else {
+      return data;
+    }
+  } catch (error) {
+    alert(error.name);
+  }
 }
 
 export default GogsApi;
