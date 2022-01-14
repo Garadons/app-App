@@ -15,8 +15,8 @@ function TodoTask(props) {
     onTrashTodo,
     onTodoChange,
     onDone,
-    onClose,
     isDone,
+    onClose,
     editing,
     onEditing,
   } = props;
