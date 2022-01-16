@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
-import { Redirect } from "react-router-dom";
+
+import auth from "../../firebase-config";
+
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 import {
   Input,
@@ -23,46 +26,40 @@ import mainFormImg from "../../img/loginFormImg.png";
 const validate = (values) => {
   const errors = {};
 
-  if (!values.name) {
-    errors.name = "Required";
-  } else if (values.name.length < 2) {
-    errors.name = "Must be 2 or more";
-  } else if (values.name.length > 15) {
-    errors.name = "Must be 15 or less";
+  if (!values.email) {
+    errors.email = "Required";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Invalid email address";
   }
 
   if (!values.password) {
     errors.password = "Required";
-  } else if (values.name.password < 2) {
-    errors.name = "Must be 2 or more";
-  } else if (values.name.password > 15) {
-    errors.name = "Must be 15 or less";
+  } else if (values.password.length < 6) {
+    errors.password = "Must be 6 or more";
+  } else if (values.password.length > 15) {
+    errors.password = "Must be 15 or less";
   }
 
   return errors;
 };
 
 function LogInForm() {
-  const [redirect, onRedirect] = useState(
-    JSON.parse(localStorage.getItem("authorized"))
-  );
-
   const formik = useFormik({
     initialValues: {
-      name: "",
       email: "",
       password: "",
     },
     validate,
-    onSubmit: () => {
-      localStorage.setItem("authorized", true);
-      onRedirect(true);
+    onSubmit: async ({ email, password }) => {
+      try {
+        const user = await signInWithEmailAndPassword(auth, email, password);
+        console.log(user);
+        console.log("done");
+      } catch (error) {
+        console.log(error.message);
+      }
     },
   });
-
-  if (redirect) {
-    return <Redirect to="/home" />;
-  }
 
   return (
     <div className="logInForm">
@@ -77,15 +74,15 @@ function LogInForm() {
         <span className="formLable">or use your email for login:</span>
         <Form onSubmit={formik.handleSubmit} action="#">
           <Input
-            id="name"
-            name="name"
+            id="email"
+            name="email"
             type="text"
-            placeholder="Name"
+            placeholder="Email"
             onChange={formik.handleChange}
-            value={formik.values.name}
+            value={formik.values.email}
           />
-          {formik.errors.name && (
-            <div className="errorForm">{formik.errors.name}</div>
+          {formik.errors.email && (
+            <div className="errorForm">{formik.errors.email}</div>
           )}
           <Input
             id="password"

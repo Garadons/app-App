@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
-import { Redirect } from "react-router-dom";
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
+import auth from "../../firebase-config";
 
 import "./SignUpForm.css";
 
@@ -40,20 +43,16 @@ const validate = (values) => {
 
   if (!values.password) {
     errors.password = "Required";
-  } else if (values.name.password < 2) {
-    errors.name = "Must be 2 or more";
-  } else if (values.name.password > 15) {
-    errors.name = "Must be 15 or less";
+  } else if (values.password.length < 6) {
+    errors.password = "Must be 6 or more";
+  } else if (values.password.length > 15) {
+    errors.password = "Must be 15 or less";
   }
 
   return errors;
 };
 
 function SignUpForm() {
-  const [redirect, onRedirect] = useState(
-    JSON.parse(localStorage.getItem("authorized"))
-  );
-
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -61,15 +60,19 @@ function SignUpForm() {
       password: "",
     },
     validate,
-    onSubmit: () => {
-      localStorage.setItem("authorized", true);
-      onRedirect(true);
+    onSubmit: async ({ email, password }) => {
+      try {
+        const user = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        console.log(user);
+      } catch (error) {
+        console.log(error.message);
+      }
     },
   });
-
-  if (redirect) {
-    return <Redirect to="/home" />;
-  }
 
   return (
     <div className="signUpForm">
