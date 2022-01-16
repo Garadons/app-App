@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import tasksContext from "../Context/tasksContext";
+import authorizedContext from "../Context/authorizedContext";
 
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
@@ -22,36 +23,45 @@ function App() {
   const [active, setActive] = useState(
     localStorage.getItem("currentPage") || 1
   );
+  const [authorized, setAuthorized] = useState(authorizedContext.user);
 
   return (
     <Router>
-      <Switch>
-        <Redirect exact from="/" to="/home" />
-        <Route path="/signin">
-          <LogInForm />
-        </Route>
-        <Route path="/signup">
-          <SignUpForm />
-        </Route>
-        <PrivateRoute path="/home">
-          <tasksContext.Provider
-            value={{ tasks, onTasks, ...tasksContext._currentValue }}
-          >
+      <authorizedContext.Provider
+        value={{
+          authorized,
+          setAuthorized,
+          ...authorizedContext._currentValue,
+        }}
+      >
+        <Switch>
+          <Redirect exact from="/" to="/home" />
+          <Route path="/signin">
+            <LogInForm />
+          </Route>
+          <Route path="/signup">
+            <SignUpForm />
+          </Route>
+          <PrivateRoute path="/home">
+            <tasksContext.Provider
+              value={{ tasks, onTasks, ...tasksContext._currentValue }}
+            >
+              <Page
+                active={active}
+                setActive={setActive}
+                content={() => <Home />}
+              />
+            </tasksContext.Provider>
+          </PrivateRoute>
+          <PrivateRoute path="/dogs">
             <Page
               active={active}
               setActive={setActive}
-              content={() => <Home />}
+              content={() => <Dogs />}
             />
-          </tasksContext.Provider>
-        </PrivateRoute>
-        <PrivateRoute path="/dogs">
-          <Page
-            active={active}
-            setActive={setActive}
-            content={() => <Dogs />}
-          />
-        </PrivateRoute>
-      </Switch>
+          </PrivateRoute>
+        </Switch>
+      </authorizedContext.Provider>
     </Router>
   );
 }
