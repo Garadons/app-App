@@ -4,14 +4,16 @@ import { Redirect } from "react-router-dom";
 
 import "./SignUpForm.css";
 
-import Input from "../common/Input";
-import BtnGroup from "../common/BtnGroup";
-import Button from "../common/Button";
-import SubmitButton from "../common/SubmitButton";
-import SocialNetworks from "../common/SocialNetworks";
-import SocialIcon from "../common/SocialIcon";
-import FormCheckBox from "../common/FormCheckBox";
-import Form from "../common/Form/Form";
+import {
+  Input,
+  BtnGroup,
+  Button,
+  SubmitButton,
+  SocialNetworks,
+  SocialIcon,
+  Form,
+  FormCheckBox,
+} from "../common";
 
 import facebook from "../../img/facebook.png";
 import google from "../../img/google.png";
