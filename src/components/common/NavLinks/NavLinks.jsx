@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 
 import { LogOutImg, NavLink, Logo, Button } from "../";
 import home from "../../../img/home.png";
@@ -6,11 +6,17 @@ import about from "../../../img/about.png";
 import example from "../../../img/example.png";
 import contact from "../../../img/contact.png";
 
+import auth from "../../../firebase-config";
+import authorizedContext from "../../../Context/authorizedContext";
+
+import { signOut } from "firebase/auth";
+
 import "./NavLinks.css";
 
-function logOut() {
-  localStorage.setItem("authorized", false);
+async function logOut(setAuthorized) {
   localStorage.setItem("currentPage", 1);
+  await signOut(auth);
+  setAuthorized(auth.currentUser);
 }
 
 const linksArray = [
@@ -22,6 +28,8 @@ const linksArray = [
 
 function NavLinks(props) {
   const { active, setActive } = props;
+
+  const { setAuthorized } = useContext(authorizedContext);
 
   return (
     <div className="header">
@@ -41,7 +49,7 @@ function NavLinks(props) {
         <LogOutImg onClick={logOut} to="signin" />
       </div>
       <Button
-        onClick={logOut}
+        onClick={() => logOut(setAuthorized)}
         value="Log Out"
         to="signin"
         isActive

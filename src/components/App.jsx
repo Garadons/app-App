@@ -6,6 +6,10 @@ import {
   Redirect,
 } from "react-router-dom";
 
+import { onAuthStateChanged } from "firebase/auth";
+
+import auth from "../firebase-config";
+
 import tasksContext from "../Context/tasksContext";
 import authorizedContext from "../Context/authorizedContext";
 
@@ -23,15 +27,17 @@ function App() {
   const [active, setActive] = useState(
     localStorage.getItem("currentPage") || 1
   );
-  const [authorized, setAuthorized] = useState(authorizedContext.user);
 
+  const [authorized, setAuthorized] = useState({});
+  onAuthStateChanged(auth, (currentUser) => {
+    setAuthorized(currentUser);
+  });
   return (
     <Router>
       <authorizedContext.Provider
         value={{
           authorized,
           setAuthorized,
-          ...authorizedContext._currentValue,
         }}
       >
         <Switch>

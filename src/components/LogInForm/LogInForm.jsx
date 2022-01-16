@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
+import { Redirect } from "react-router-dom";
 
 import auth from "../../firebase-config";
+
+import authorizedContext from "../../Context/authorizedContext";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 
@@ -44,6 +47,8 @@ const validate = (values) => {
 };
 
 function LogInForm() {
+  const { authorized, setAuthorized } = useContext(authorizedContext);
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -52,14 +57,17 @@ function LogInForm() {
     validate,
     onSubmit: async ({ email, password }) => {
       try {
-        const user = await signInWithEmailAndPassword(auth, email, password);
-        console.log(user);
-        console.log("done");
+        await signInWithEmailAndPassword(auth, email, password);
+        setAuthorized(auth.currentUser);
       } catch (error) {
-        console.log(error.message);
+        alert(error.message);
       }
     },
   });
+
+  if (authorized) {
+    return <Redirect to="/home" />;
+  }
 
   return (
     <div className="logInForm">
@@ -97,7 +105,7 @@ function LogInForm() {
           )}
           <BtnGroup>
             <Button value="Sign Up" to="/signup" />
-            <SubmitButton value="Sign In" to="/home" isActive />
+            <SubmitButton value="Sign In" isActive />
           </BtnGroup>
         </Form>
       </div>

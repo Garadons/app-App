@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
+import { Redirect } from "react-router-dom";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import auth from "../../firebase-config";
+
+import authorizedContext from "../../Context/authorizedContext";
 
 import "./SignUpForm.css";
 
@@ -53,6 +56,8 @@ const validate = (values) => {
 };
 
 function SignUpForm() {
+  const { authorized, setAuthorized } = useContext(authorizedContext);
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -67,12 +72,16 @@ function SignUpForm() {
           email,
           password
         );
-        console.log(user);
+        setAuthorized(auth.currentUser);
       } catch (error) {
-        console.log(error.message);
+        alert(error.message);
       }
     },
   });
+
+  if (authorized) {
+    return <Redirect to="/home" />;
+  }
 
   return (
     <div className="signUpForm">

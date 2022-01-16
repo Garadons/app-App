@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 
+import authorizedContext from "../../Context/authorizedContext";
+
 function PrivateRoute({ children, ...rest }) {
-  let authorized = JSON.parse(localStorage.getItem("authorized"));
+  const { authorized } = useContext(authorizedContext);
   return (
     <Route
       {...rest}

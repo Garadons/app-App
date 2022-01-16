@@ -1,7 +1,5 @@
 import React from "react";
 
-import auth from '../firebase-config'
-
-const authorizedContext = {user: auth.currentUser};
+const authorizedContext = null;
 
 export default React.createContext(authorizedContext);
