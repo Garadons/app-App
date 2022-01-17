@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 
 import auth from "../../Configs/firebase-config";
 
-import authorizedContext from "../../Context/AuthorizedContext";
+import authorizedContext from "../../Context/AuthorizedProvider";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 

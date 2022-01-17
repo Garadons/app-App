@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import auth from "../../Configs/firebase-config";
 
-import authorizedContext from "../../Context/AuthorizedContext";
+import authorizedContext from "../../Context/AuthorizedProvider";
 
 import "./SignUpForm.css";
 

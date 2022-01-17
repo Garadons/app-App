@@ -11,7 +11,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import auth from "../Configs/firebase-config";
 
 import tasksContext from "../Context/TasksContext";
-import authorizedContext from "../Context/AuthorizedContext";
+import authorizedContext from "../Context/AuthorizedProvider";
 
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
