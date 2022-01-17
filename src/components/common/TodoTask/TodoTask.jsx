@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import pencil from "../../../img/pencil.png";
-import doneIcon from "../../../img/done.png";
-import trash from "../../../img/trash.png";
-import close from "../../../img/close.png";
+import pencil from "../../../Img/pencil.png";
+import doneIcon from "../../../Img/done.png";
+import trash from "../../../Img/trash.png";
+import close from "../../../Img/close.png";
 
 import "./TodoTask.css";
 

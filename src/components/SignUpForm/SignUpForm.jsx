@@ -4,9 +4,9 @@ import { Redirect } from "react-router-dom";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-import auth from "../../firebase-config";
+import auth from "../../Configs/firebase-config";
 
-import authorizedContext from "../../Context/authorizedContext";
+import authorizedContext from "../../Context/AuthorizedContext";
 
 import "./SignUpForm.css";
 
@@ -21,11 +21,11 @@ import {
   FormCheckBox,
 } from "../common";
 
-import facebook from "../../img/facebook.png";
-import google from "../../img/google.png";
-import instagram from "../../img/instagram.png";
-import linkedin from "../../img/linkedin.png";
-import mainFormImg from "../../img/loginFormImg.png";
+import facebook from "../../Img/facebook.png";
+import google from "../../Img/google.png";
+import instagram from "../../Img/instagram.png";
+import linkedin from "../../Img/linkedin.png";
+import mainFormImg from "../../Img/loginFormImg.png";
 
 const validate = (values) => {
   const errors = {};

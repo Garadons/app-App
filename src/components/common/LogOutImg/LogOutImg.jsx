@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import logout from "../../../img/logout.png";
+import logout from "../../../Img/logout.png";
 
 import "./LogOutImg.css";
 

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import tasksContext from "../../Context/tasksContext";
+import tasksContext from "../../Context/TasksContext";
 
 import { TodoTask } from "../common";
 
@@ -8,7 +8,7 @@ import { dateNow } from "../../Utils";
 
 import "./Home.css";
 
-import add from "../../img/add.png";
+import add from "../../Img/add.png";
 
 function Home() {
   const [todoTitle, onTodoTitle] = useState("");

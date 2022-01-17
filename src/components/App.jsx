@@ -8,10 +8,10 @@ import {
 
 import { onAuthStateChanged } from "firebase/auth";
 
-import auth from "../firebase-config";
+import auth from "../Configs/firebase-config";
 
-import tasksContext from "../Context/tasksContext";
-import authorizedContext from "../Context/authorizedContext";
+import tasksContext from "../Context/TasksContext";
+import authorizedContext from "../Context/AuthorizedContext";
 
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
@@ -32,6 +32,7 @@ function App() {
   onAuthStateChanged(auth, (currentUser) => {
     setAuthorized(currentUser);
   });
+
   return (
     <Router>
       <authorizedContext.Provider

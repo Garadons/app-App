@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 
 import { LogOutImg, NavLink, Logo, Button } from "../";
-import home from "../../../img/home.png";
-import about from "../../../img/about.png";
-import example from "../../../img/example.png";
-import contact from "../../../img/contact.png";
+import home from "../../../Img/home.png";
+import about from "../../../Img/about.png";
+import example from "../../../Img/example.png";
+import contact from "../../../Img/contact.png";
 
-import auth from "../../../firebase-config";
-import authorizedContext from "../../../Context/authorizedContext";
+import auth from "../../../Configs/firebase-config";
+import authorizedContext from "../../../Context/AuthorizedContext";
 
 import { signOut } from "firebase/auth";
 
