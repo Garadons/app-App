@@ -73,6 +73,7 @@ function SignUpForm() {
           password
         );
         setAuthorized(auth.currentUser);
+        console.log(user);
       } catch (error) {
         alert(error.message);
       }

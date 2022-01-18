@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import tasksContext from "../../Context/TasksProvider";
+import { TasksContext } from "../../Context/TasksProvider";
 
 import { TodoTask } from "../common";
 
@@ -25,7 +25,7 @@ function Home() {
     onDone,
     onClose,
     onTrashTodo,
-  } = useContext(tasksContext);
+  } = useContext(TasksContext);
 
   return (
     <>

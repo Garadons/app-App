@@ -6,15 +6,8 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import { onAuthStateChanged } from "firebase/auth";
-
-import auth from "../Configs/firebase-config";
-
-import tasksContext from "../Context/TasksProvider";
-import {
-  AuthorizedContext,
-  AuthorizedProvider,
-} from "../Context/AuthorizedProvider";
+import { TasksProvider } from "../Context/TasksProvider";
+import { AuthorizedProvider } from "../Context/AuthorizedProvider";
 
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
@@ -24,9 +17,6 @@ import Page from "./Page";
 import PrivateRoute from "./PrivateRoute";
 
 function App() {
-  const [tasks, onTasks] = useState(
-    JSON.parse(localStorage.getItem("tasks")) || []
-  );
   const [active, setActive] = useState(
     localStorage.getItem("currentPage") || 1
   );
@@ -34,33 +24,31 @@ function App() {
   return (
     <Router>
       <AuthorizedProvider>
-        <Switch>
-          <Redirect exact from="/" to="/home" />
-          <Route path="/signin">
-            <LogInForm />
-          </Route>
-          <Route path="/signup">
-            <SignUpForm />
-          </Route>
-          <PrivateRoute path="/home">
-            <tasksContext.Provider
-              value={{ tasks, onTasks, ...tasksContext._currentValue }}
-            >
+        <TasksProvider>
+          <Switch>
+            <Redirect exact from="/" to="/home" />
+            <Route path="/signin">
+              <LogInForm />
+            </Route>
+            <Route path="/signup">
+              <SignUpForm />
+            </Route>
+            <PrivateRoute path="/home">
               <Page
                 active={active}
                 setActive={setActive}
                 content={() => <Home />}
               />
-            </tasksContext.Provider>
-          </PrivateRoute>
-          <PrivateRoute path="/dogs">
-            <Page
-              active={active}
-              setActive={setActive}
-              content={() => <Dogs />}
-            />
-          </PrivateRoute>
-        </Switch>
+            </PrivateRoute>
+            <PrivateRoute path="/dogs">
+              <Page
+                active={active}
+                setActive={setActive}
+                content={() => <Dogs />}
+              />
+            </PrivateRoute>
+          </Switch>
+        </TasksProvider>
       </AuthorizedProvider>
     </Router>
   );

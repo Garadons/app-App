@@ -58,6 +58,8 @@
     max-width: 360px;
 
     box-shadow: none;
+
+    background-color: transparent;
   }
 
   .formContainer {
