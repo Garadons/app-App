@@ -10,8 +10,11 @@ import { onAuthStateChanged } from "firebase/auth";
 
 import auth from "../Configs/firebase-config";
 
-import tasksContext from "../Context/TasksContext";
-import authorizedContext from "../Context/AuthorizedProvider";
+import tasksContext from "../Context/TasksProvider";
+import {
+  AuthorizedContext,
+  AuthorizedProvider,
+} from "../Context/AuthorizedProvider";
 
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
@@ -28,19 +31,9 @@ function App() {
     localStorage.getItem("currentPage") || 1
   );
 
-  const [authorized, setAuthorized] = useState({});
-  onAuthStateChanged(auth, (currentUser) => {
-    setAuthorized(currentUser);
-  });
-
   return (
     <Router>
-      <authorizedContext.Provider
-        value={{
-          authorized,
-          setAuthorized,
-        }}
-      >
+      <AuthorizedProvider>
         <Switch>
           <Redirect exact from="/" to="/home" />
           <Route path="/signin">
@@ -68,7 +61,7 @@ function App() {
             />
           </PrivateRoute>
         </Switch>
-      </authorizedContext.Provider>
+      </AuthorizedProvider>
     </Router>
   );
 }

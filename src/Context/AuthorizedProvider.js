@@ -11,7 +11,6 @@ const AuthorizedProvider = (props) => {
     onAuthStateChanged(auth, (currentUser) => {
       setAuthorized(currentUser);
     });
-  
     
     return (
         <AuthorizedContext.Provider
@@ -25,4 +24,4 @@ const AuthorizedProvider = (props) => {
     );
   }
 
-export default AuthorizedContext ;
+  export  {AuthorizedContext, AuthorizedProvider} ;

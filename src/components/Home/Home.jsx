@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import tasksContext from "../../Context/TasksContext";
+import tasksContext from "../../Context/TasksProvider";
 
 import { TodoTask } from "../common";
 

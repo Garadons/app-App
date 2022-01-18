@@ -7,7 +7,7 @@ import example from "../../../Img/example.png";
 import contact from "../../../Img/contact.png";
 
 import auth from "../../../Configs/firebase-config";
-import authorizedContext from "../../../Context/AuthorizedProvider";
+import { AuthorizedContext } from "../../../Context/AuthorizedProvider";
 
 import { signOut } from "firebase/auth";
 
@@ -29,7 +29,7 @@ const linksArray = [
 function NavLinks(props) {
   const { active, setActive } = props;
 
-  const { setAuthorized } = useContext(authorizedContext);
+  const { setAuthorized } = useContext(AuthorizedContext);
 
   return (
     <div className="header">

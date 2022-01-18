@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 
 import auth from "../../Configs/firebase-config";
 
-import authorizedContext from "../../Context/AuthorizedProvider";
+import { AuthorizedContext } from "../../Context/AuthorizedProvider";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 
@@ -47,7 +47,7 @@ const validate = (values) => {
 };
 
 function LogInForm() {
-  const { authorized, setAuthorized } = useContext(authorizedContext);
+  const { authorized, setAuthorized } = useContext(AuthorizedContext);
 
   const formik = useFormik({
     initialValues: {

@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 
-import authorizedContext from "../../Context/AuthorizedProvider";
+import { AuthorizedContext } from "../../Context/AuthorizedProvider";
 
 function PrivateRoute({ children, ...rest }) {
-  const { authorized } = useContext(authorizedContext);
+  const { authorized } = useContext(AuthorizedContext);
   return (
     <Route
       {...rest}

@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import auth from "../../Configs/firebase-config";
 
-import authorizedContext from "../../Context/AuthorizedProvider";
+import { AuthorizedContext } from "../../Context/AuthorizedProvider";
 
 import "./SignUpForm.css";
 
@@ -56,7 +56,7 @@ const validate = (values) => {
 };
 
 function SignUpForm() {
-  const { authorized, setAuthorized } = useContext(authorizedContext);
+  const { authorized, setAuthorized } = useContext(AuthorizedContext);
 
   const formik = useFormik({
     initialValues: {
