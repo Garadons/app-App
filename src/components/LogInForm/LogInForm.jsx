@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useFormik } from "formik";
 import { Redirect } from "react-router-dom";
 
-import auth from "../../Configs/firebase-config";
+import auth from "../../Configs/firebaseConfig";
 
 import { AuthorizedContext } from "../../Context/AuthorizedProvider";
 
