@@ -2,9 +2,6 @@ import React, { useContext } from "react";
 import { useFormik } from "formik";
 import { Redirect } from "react-router-dom";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import auth from "../../Configs/firebaseConfig";
-
 import { AuthorizedContext } from "../../Context/AuthorizedProvider";
 
 import request from "../../Api/Services/request";
@@ -68,11 +65,6 @@ function SignUpForm() {
     validate,
     onSubmit: async ({ name, email, password }) => {
       try {
-        const user = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
         console.log(
           "Data from reg post request",
           await request("http://localhost:5000/reg", "POST", {
@@ -81,7 +73,7 @@ function SignUpForm() {
           })
         );
 
-        setAuthorized(auth.currentUser);
+        setAuthorized(true);
       } catch (error) {
         alert(error.message);
       }

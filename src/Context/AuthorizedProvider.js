@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, { createContext, useState } from "react";
 
 import { onAuthStateChanged } from "firebase/auth";
 import auth from "../Configs/firebaseConfig";
@@ -6,22 +6,18 @@ import auth from "../Configs/firebaseConfig";
 const AuthorizedContext = createContext();
 
 const AuthorizedProvider = (props) => {
+  const [authorized, setAuthorized] = useState(false);
 
-    const [authorized, setAuthorized] = useState({});
-    onAuthStateChanged(auth, (currentUser) => {
-      setAuthorized(currentUser);
-    });
-    
-    return (
-        <AuthorizedContext.Provider
-        value={{
-          authorized,
-          setAuthorized,
-        }}
-      >
-        {props.children}
-      </AuthorizedContext.Provider>
-    );
-  }
+  return (
+    <AuthorizedContext.Provider
+      value={{
+        authorized,
+        setAuthorized,
+      }}
+    >
+      {props.children}
+    </AuthorizedContext.Provider>
+  );
+};
 
-  export  {AuthorizedContext, AuthorizedProvider} ;
+export { AuthorizedContext, AuthorizedProvider };

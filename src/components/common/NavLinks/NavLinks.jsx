@@ -6,17 +6,13 @@ import about from "../../../Img/about.png";
 import example from "../../../Img/example.png";
 import contact from "../../../Img/contact.png";
 
-import auth from "../../../Configs/firebaseConfig";
 import { AuthorizedContext } from "../../../Context/AuthorizedProvider";
-
-import { signOut } from "firebase/auth";
 
 import "./NavLinks.css";
 
 async function logOut(setAuthorized) {
   localStorage.setItem("currentPage", 1);
-  await signOut(auth);
-  setAuthorized(auth.currentUser);
+  setAuthorized(false);
 }
 
 const linksArray = [

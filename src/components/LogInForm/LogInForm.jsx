@@ -2,11 +2,9 @@ import React, { useContext } from "react";
 import { useFormik } from "formik";
 import { Redirect } from "react-router-dom";
 
-import auth from "../../Configs/firebaseConfig";
-
 import { AuthorizedContext } from "../../Context/AuthorizedProvider";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
+import request from "../../Api/Services/request";
 
 import {
   Input,
@@ -57,8 +55,14 @@ function LogInForm() {
     validate,
     onSubmit: async ({ email, password }) => {
       try {
-        await signInWithEmailAndPassword(auth, email, password);
-        setAuthorized(auth.currentUser);
+        console.log(
+          "Data from signin post request",
+          await request("http://localhost:5000/signin", "POST", {
+            email,
+            password,
+          })
+        );
+        setAuthorized(true);
       } catch (error) {
         alert(error.message);
       }
