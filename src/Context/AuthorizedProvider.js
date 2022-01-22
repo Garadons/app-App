@@ -1,8 +1,5 @@
 import React, { createContext, useState } from "react";
 
-import { onAuthStateChanged } from "firebase/auth";
-import auth from "../Configs/firebaseConfig";
-
 const AuthorizedContext = createContext();
 
 const AuthorizedProvider = (props) => {

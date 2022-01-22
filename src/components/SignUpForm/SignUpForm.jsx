@@ -65,13 +65,21 @@ function SignUpForm() {
     validate,
     onSubmit: async ({ name, email, password }) => {
       try {
-        console.log(
-          "Data from reg post request",
-          await request("http://localhost:5000/reg", "POST", {
+        const responce = await request(
+          "http://localhost:5000/api/reg",
+          "POST",
+          {
+            name,
             email,
             password,
-          })
+          }
         );
+
+        const data = await responce.json();
+
+        if (!responce.ok) {
+          throw new Error(data);
+        }
 
         setAuthorized(true);
       } catch (error) {

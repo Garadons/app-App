@@ -55,13 +55,21 @@ function LogInForm() {
     validate,
     onSubmit: async ({ email, password }) => {
       try {
-        console.log(
-          "Data from signin post request",
-          await request("http://localhost:5000/signin", "POST", {
+        const responce = await request(
+          "http://localhost:5000/api/signin",
+          "POST",
+          {
             email,
             password,
-          })
+          }
         );
+
+        const data = await responce.json();
+
+        if (!responce.ok) {
+          throw new Error(data);
+        }
+
         setAuthorized(true);
       } catch (error) {
         alert(error.message);
