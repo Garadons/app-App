@@ -89,7 +89,7 @@ function Home() {
                 onTodoChange(tasks, onTasks, todoValue, id)
               }
               onDone={() => onDone(tasks)}
-              onClose={() => onClose(onTasks)}
+              onClose={() => onClose(tasks, onTasks)}
               isDone={() => isDone(id, onTasks, tasks)}
               editing={editing}
               onEditing={onEditing}

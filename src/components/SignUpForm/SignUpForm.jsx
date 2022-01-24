@@ -77,7 +77,9 @@ function SignUpForm() {
 
         const data = await responce.json();
 
-        localStorage.setItem("accessToken", data.accessToken);
+        console.log(data);
+
+        localStorage.setItem("accessToken", data.token);
 
         if (!responce.ok) {
           throw new Error(data);

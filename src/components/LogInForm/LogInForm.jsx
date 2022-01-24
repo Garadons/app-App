@@ -66,7 +66,7 @@ function LogInForm() {
 
         const data = await responce.json();
 
-        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("accessToken", data.token);
 
         if (!responce.ok) {
           throw new Error(data);
