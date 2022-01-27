@@ -11,20 +11,18 @@ import "./Home.css";
 import add from "../../Img/add.png";
 
 function Home() {
-  const [todoTitle, onTodoTitle] = useState("");
-  const [todoDateTime, onTodoDateTime] = useState(dateNow());
-  const [todoError, onTodoError] = useState(false);
-  const [editing, onEditing] = useState(false);
-
   const {
     tasks,
-    onTasks,
     onTodoAdd,
-    isDone,
-    onTodoChange,
-    onDone,
-    onClose,
+    todoTitle,
+    todoDateTime,
+    onTodoTitle,
+    todoError,
+    onTodoError,
+    onTodoDateTime,
     onTrashTodo,
+    onTodoChange,
+    isDone,
   } = useContext(TasksContext);
 
   return (
@@ -58,19 +56,7 @@ function Home() {
                 <div className="todoError">{todoError}</div>
               )}
               <div className="toDoButtons">
-                <button
-                  onClick={() =>
-                    onTodoAdd(
-                      tasks,
-                      onTasks,
-                      todoTitle,
-                      todoDateTime,
-                      onTodoTitle,
-                      onTodoError,
-                      onTodoDateTime
-                    )
-                  }
-                >
+                <button onClick={() => onTodoAdd()}>
                   <img src={add} />
                 </button>
               </div>
@@ -84,15 +70,9 @@ function Home() {
               date={t.date}
               done={t.done}
               key={id}
-              onTrashTodo={() => onTrashTodo(id, tasks, onTasks)}
-              onTodoChange={(todoValue) =>
-                onTodoChange(tasks, onTasks, todoValue, id)
-              }
-              onDone={() => onDone(tasks)}
-              onClose={() => onClose(tasks, onTasks)}
-              isDone={() => isDone(id, onTasks, tasks)}
-              editing={editing}
-              onEditing={onEditing}
+              onTrashTodo={() => onTrashTodo(id)}
+              onTodoChange={(todoValue) => onTodoChange(todoValue, id)}
+              isDone={() => isDone(id)}
             />
           ))}
         </div>

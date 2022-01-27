@@ -1,130 +1,101 @@
 import React, { useState, useEffect, createContext } from "react";
 
-import { parseDateTimeInput } from "../Utils";
+import { parseDateTimeInput, dateNow } from "../Utils";
 
 import request from "../Api/Services/request";
+import gettasks from "../Api/Services/gettasks";
+import { on } from "events";
 
 const TasksContext = createContext();
 
-function onTodoAdd(
-  tasks,
-  onTasks,
-  todoTitle,
-  todoDateTime,
-  onTodoTitle,
-  onTodoError,
-  onTodoDateTime
-) {
-  if (todoTitle.trim() !== "" && todoDateTime.trim() !== "") {
+const TasksProvider = (props) => {
+  const [todoTitle, onTodoTitle] = useState("");
+  const [todoDateTime, onTodoDateTime] = useState(dateNow());
+  const [todoError, onTodoError] = useState(false);
+  const [editing, onEditing] = useState(false);
+  const [readOnly, onReadOnly] = useState(true);
+  const [tasks, onTasks] = useState([]);
+
+  useEffect(async () => {
+    let tasksFromApi = await gettasks();
+    localStorage.setItem("tasks", JSON.stringify(tasksFromApi));
+    onTasks(tasksFromApi);
+  }, []);
+
+  function onTodoAdd() {
+    if (todoTitle.trim() !== "" && todoDateTime.trim() !== "") {
+      const newTasks = [...tasks];
+
+      const date = parseDateTimeInput(todoDateTime);
+
+      newTasks.push({ value: todoTitle, done: false, date });
+      onTasks(newTasks);
+      onTodoError(false);
+
+      localStorage.setItem("tasks", JSON.stringify(newTasks));
+
+      onTodoTitle("");
+      onTodoDateTime("");
+
+      request("http://localhost:5000/api/settasks", "POST", true, {
+        tasks: newTasks,
+      });
+    } else {
+      if (todoDateTime.trim() !== "") {
+        onTodoError("Title required");
+      } else {
+        onTodoError("Data required");
+      }
+    }
+  }
+
+  function isDone(id) {
     const newTasks = [...tasks];
-
-    const date = parseDateTimeInput(todoDateTime);
-
-    newTasks.push({ value: todoTitle, done: false, date });
+    const newTodoTask = { ...newTasks[id] };
+    newTodoTask.done = true;
+    newTasks[id] = newTodoTask;
     onTasks(newTasks);
-    onTodoError(false);
 
     localStorage.setItem("tasks", JSON.stringify(newTasks));
 
-    onTodoTitle("");
-    onTodoDateTime("");
-
-    const token = localStorage.getItem("accessToken");
-
-    request("http://localhost:5000/api/settasks", "POST", {
-      token,
+    request("http://localhost:5000/api/settasks", "POST", true, {
       tasks: newTasks,
     });
-  } else {
-    if (todoDateTime.trim() !== "") {
-      onTodoError("Title required");
-    } else {
-      onTodoError("Data required");
-    }
   }
-}
 
-function isDone(id, onTasks, tasks) {
-  const newTasks = [...tasks];
-  const newTodoTask = { ...newTasks[id] };
-  newTodoTask.done = true;
-  newTasks[id] = newTodoTask;
-  onTasks(newTasks);
+  function onTodoChange(todoValue, id) {
+    const newTasks = [...tasks];
+    const newTodoTask = { ...newTasks[id] };
+    newTodoTask.value = todoValue;
+    newTasks[id] = newTodoTask;
+    onTasks(newTasks);
+  }
 
-  localStorage.setItem("tasks", JSON.stringify(newTasks));
+  function onDone() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 
-  const token = localStorage.getItem("accessToken");
+    const newTasks = JSON.parse(localStorage.getItem("tasks"));
 
-  request("http://localhost:5000/api/settasks", "POST", {
-    token,
-    tasks: newTasks,
-  });
-}
+    request("http://localhost:5000/api/settasks", "POST", true, {
+      tasks: newTasks,
+    });
+  }
 
-function onTodoChange(tasks, onTasks, todoValue, id) {
-  const newTasks = [...tasks];
-  const newTodoTask = { ...newTasks[id] };
-  newTodoTask.value = todoValue;
-  newTasks[id] = newTodoTask;
-  onTasks(newTasks);
+  function onClose() {
+    onTasks(JSON.parse(localStorage.getItem("tasks")));
+  }
 
-  const token = localStorage.getItem("accessToken");
+  function onTrashTodo(id) {
+    const newTasks = [...tasks];
+    newTasks.splice(id, 1);
+    onTasks(newTasks);
 
-  request("http://localhost:5000/api/settasks", "POST", {
-    token,
-    tasks: newTasks,
-  });
-}
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
 
-function onDone(tasks) {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-
-  const token = localStorage.getItem("accessToken");
-
-  request("http://localhost:5000/api/settasks", "POST", { token, tasks });
-}
-
-function onClose(onTasks) {
-  onTasks(JSON.parse(localStorage.getItem("tasks")));
-
-  const tasks = JSON.parse(localStorage.getItem("tasks"));
-
-  const token = localStorage.getItem("accessToken");
-
-  request("http://localhost:5000/api/settasks", "POST", { token, tasks });
-}
-
-function onTrashTodo(id, tasks, onTasks) {
-  const newTasks = [...tasks];
-  newTasks.splice(id, 1);
-  onTasks(newTasks);
-
-  localStorage.setItem("tasks", JSON.stringify(newTasks));
-
-  const token = localStorage.getItem("accessToken");
-
-  request("http://localhost:5000/api/settasks", "POST", {
-    token,
-    tasks: newTasks,
-  });
-}
-
-async function getTasks() {}
-
-const TasksProvider = (props) => {
-  const [tasks, onTasks] = useState(
-    JSON.parse(localStorage.getItem("tasks")) || []
-  );
-
-  console.log(tasks);
-
-  const token = localStorage.getItem("accessToken");
-
-  const a = request("http://localhost:5000/api/gettasks", "POST", {
-    token,
-  });
-
-  console.log(a);
+    request("http://localhost:5000/api/settasks", "POST", true, {
+      tasks: newTasks,
+    });
+  }
 
   return (
     <TasksContext.Provider
@@ -137,6 +108,16 @@ const TasksProvider = (props) => {
         onDone,
         onClose,
         onTrashTodo,
+        todoTitle,
+        onTodoTitle,
+        todoDateTime,
+        onTodoDateTime,
+        todoError,
+        onTodoError,
+        editing,
+        onEditing,
+        readOnly,
+        onReadOnly,
       }}
     >
       {props.children}

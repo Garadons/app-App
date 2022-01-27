@@ -68,6 +68,7 @@ function SignUpForm() {
         const responce = await request(
           "http://localhost:5000/api/reg",
           "POST",
+          false,
           {
             name,
             email,
@@ -76,8 +77,6 @@ function SignUpForm() {
         );
 
         const data = await responce.json();
-
-        console.log(data);
 
         localStorage.setItem("accessToken", data.token);
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import pencil from "../../../Img/pencil.png";
 import doneIcon from "../../../Img/done.png";
@@ -6,22 +6,12 @@ import trash from "../../../Img/trash.png";
 import close from "../../../Img/close.png";
 
 import "./TodoTask.css";
+import { TasksContext } from "../../../Context/TasksProvider";
 
 function TodoTask(props) {
-  const {
-    value,
-    date,
-    done,
-    onTrashTodo,
-    onTodoChange,
-    onDone,
-    isDone,
-    onClose,
-    editing,
-    onEditing,
-  } = props;
-
-  const [readOnly, onReadOnly] = useState(true);
+  const { value, date, done, onTrashTodo, onTodoChange, isDone } = props;
+  const { onDone, onClose, editing, onEditing, readOnly, onReadOnly } =
+    useContext(TasksContext);
 
   return (
     <div className={done ? "toDoMessage toDoMessage-done" : "toDoMessage"}>

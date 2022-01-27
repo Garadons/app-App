@@ -13,6 +13,7 @@ import "./NavLinks.css";
 async function logOut(setAuthorized) {
   localStorage.setItem("currentPage", 1);
   localStorage.removeItem("accessToken");
+  localStorage.removeItem("tasks");
   setAuthorized(false);
 }
 

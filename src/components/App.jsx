@@ -24,15 +24,15 @@ function App() {
   return (
     <Router>
       <AuthorizedProvider>
-        <TasksProvider>
-          <Switch>
-            <Redirect exact from="/" to="/home" />
-            <Route path="/signin">
-              <LogInForm />
-            </Route>
-            <Route path="/signup">
-              <SignUpForm />
-            </Route>
+        <Switch>
+          <Redirect exact from="/" to="/home" />
+          <Route path="/signin">
+            <LogInForm />
+          </Route>
+          <Route path="/signup">
+            <SignUpForm />
+          </Route>
+          <TasksProvider>
             <PrivateRoute path="/home">
               <Page
                 active={active}
@@ -47,8 +47,8 @@ function App() {
                 content={() => <Dogs />}
               />
             </PrivateRoute>
-          </Switch>
-        </TasksProvider>
+          </TasksProvider>
+        </Switch>
       </AuthorizedProvider>
     </Router>
   );

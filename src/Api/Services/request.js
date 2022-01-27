@@ -1,11 +1,16 @@
-async function request(url, method = "GET", data = null) {
+async function request(url, method = "GET", isToken, data = null) {
   try {
     const headers = {};
+    let token;
     let body;
+
+    if (isToken) {
+      token = localStorage.getItem("accessToken");
+    }
 
     if (data) {
       headers["Content-Type"] = "application/json";
-      body = JSON.stringify({ ...data });
+      body = JSON.stringify({ token, ...data });
     }
 
     const response = await fetch(url, {
