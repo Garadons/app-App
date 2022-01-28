@@ -4,7 +4,6 @@ import { parseDateTimeInput, dateNow } from "../Utils";
 
 import request from "../Api/Services/request";
 import gettasks from "../Api/Services/gettasks";
-import { on } from "events";
 
 const TasksContext = createContext();
 
@@ -15,6 +14,8 @@ const TasksProvider = (props) => {
   const [editing, onEditing] = useState(false);
   const [readOnly, onReadOnly] = useState(true);
   const [tasks, onTasks] = useState([]);
+
+  const api = "http://localhost:5000/api/";
 
   useEffect(async () => {
     let tasksFromApi = await gettasks();
@@ -37,7 +38,7 @@ const TasksProvider = (props) => {
       onTodoTitle("");
       onTodoDateTime("");
 
-      request("http://localhost:5000/api/settasks", "POST", true, {
+      request(api + "settasks", "POST", true, {
         tasks: newTasks,
       });
     } else {
@@ -58,7 +59,7 @@ const TasksProvider = (props) => {
 
     localStorage.setItem("tasks", JSON.stringify(newTasks));
 
-    request("http://localhost:5000/api/settasks", "POST", true, {
+    request(api + "settasks", "POST", true, {
       tasks: newTasks,
     });
   }
@@ -76,7 +77,7 @@ const TasksProvider = (props) => {
 
     const newTasks = JSON.parse(localStorage.getItem("tasks"));
 
-    request("http://localhost:5000/api/settasks", "POST", true, {
+    request(api + "settasks", "POST", true, {
       tasks: newTasks,
     });
   }
@@ -92,7 +93,7 @@ const TasksProvider = (props) => {
 
     localStorage.setItem("tasks", JSON.stringify(newTasks));
 
-    request("http://localhost:5000/api/settasks", "POST", true, {
+    request(api + "settasks", "POST", true, {
       tasks: newTasks,
     });
   }
